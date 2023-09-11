@@ -42,13 +42,21 @@ public class ProductReader
 
                     InputStream in = new BufferedInputStream(Files.newInputStream(file, CREATE));
                     BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-                    System.out.println(String.format("%-8s%-10s%-12s%7s", "ID#", "Name", "Description", "Cost"));
-                    System.out.println("==================================================");
+                    System.out.println(String.format("%-8s%-15s%-28s%11s", "ID#", "Name", "Description", "Cost"));
+                    System.out.println("==============================================================");
 
                     while (reader.ready())
                     {
                         rec = reader.readLine();
-                        System.out.println(rec);
+                        String [] details = rec.split(", ");
+
+                        String ID = details[0];
+                        String name = details[1];
+                        String description = details[2];
+                        String strCost = details[3];
+
+                        double cost = Double.parseDouble(strCost);
+                        System.out.println(String.format("%-8s%-15s%-28s%12s",ID,name,description,cost));
                     }
 
 
@@ -73,7 +81,4 @@ public class ProductReader
         }
     }
 }
-
-
-
 
